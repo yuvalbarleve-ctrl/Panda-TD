@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panda Tower Defence</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-block">
+        <div class="brand-kicker">Cartoon Tower Defense Prototype</div>
+        <h1>Panda Tower Defence</h1>
+      </div>
+      <div class="hud-strip">
+        <div class="hud-pill"><span>Lives</span><strong id="livesValue">100</strong></div>
+        <div class="hud-pill"><span>Money</span><strong id="moneyValue">$500</strong></div>
+        <div class="hud-pill"><span>Wave</span><strong id="waveValue">1 / 40</strong></div>
+        <div class="hud-pill"><span>Difficulty</span><strong id="difficultyValue">Easy</strong></div>
+      </div>
+      <div class="topbar-actions">
+        <button id="startWaveBtn" class="primary-btn">Start Wave</button>
+        <label class="toggle-row">
+          <input type="checkbox" id="autoStartToggle">
+          <span>Auto Start</span>
+        </label>
+        <div class="speed-group">
+          <button class="speed-btn active" data-speed="1">1x</button>
+          <button class="speed-btn" data-speed="3">3x</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-layout">
+      <section class="play-area">
+        <canvas id="gameCanvas" width="1024" height="640"></canvas>
+        <div id="placementHint" class="placement-hint hidden"></div>
+        <div id="waveBanner" class="wave-banner hidden"></div>
+      </section>
+
+      <aside class="sidebar">
+        <button id="towerMenuToggle" class="menu-toggle">Hide Towers</button>
+        <div class="sidebar-scroll" id="towerMenuPanel">
+          <section class="panel tower-panel">
+            <h2>Towers</h2>
+            <div id="towerButtons" class="tower-buttons"></div>
+          </section>
+
+          <section class="panel selected-panel">
+            <h2>Selected Tower</h2>
+            <div id="selectedTowerEmpty" class="panel-empty">Select a placed panda to view upgrades, targeting, and abilities.</div>
+            <div id="selectedTowerPanel" class="hidden">
+              <div id="selectedTowerTitle" class="selected-title"></div>
+              <div id="selectedTowerStats" class="stats-grid"></div>
+              <div class="targeting-row">
+                <span>Targeting</span>
+                <button id="targetingBtn" class="secondary-btn">First</button>
+              </div>
+              <div id="abilityPanel" class="ability-panel"></div>
+              <div class="upgrades-heading">Upgrades</div>
+              <div id="upgradeGrid" class="upgrade-grid"></div>
+              <button id="sellBtn" class="danger-btn">Sell</button>
+            </div>
+          </section>
+
+          <section class="panel log-panel">
+            <h2>Game Feed</h2>
+            <div id="eventFeed" class="event-feed"></div>
+          </section>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <div id="screenOverlay" class="screen-overlay">
+    <section id="homeScreen" class="menu-screen active">
+      <div class="menu-card hero-card">
+        <div class="hero-art">
+          <div class="hero-sun"></div>
+          <div class="hero-hill hill-back"></div>
+          <div class="hero-hill hill-front"></div>
+          <div class="hero-panda"></div>
+          <div class="hero-wolf"></div>
+        </div>
+        <div class="menu-copy">
+          <div class="menu-kicker">Single Path Defense</div>
+          <h2>Panda Tower Defence</h2>
+          <p>Build pandas, defend the bamboo valley, and stop waves of wolves and tigers before they escape.</p>
+          <div class="menu-actions">
+            <button id="onePlayerBtn" class="primary-btn large-btn">1 Player</button>
+            <button class="ghost-btn large-btn" disabled>2 Player</button>
+            <button class="ghost-btn large-btn" disabled>1v1</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="mapScreen" class="menu-screen">
+      <div class="menu-card">
+        <div class="menu-kicker">Stage Select</div>
+        <h2>Map Options</h2>
+        <div id="mapOptions" class="choice-grid"></div>
+      </div>
+    </section>
+
+    <section id="difficultyScreen" class="menu-screen">
+      <div class="menu-card">
+        <div class="menu-kicker">Choose Your Pace</div>
+        <h2>Difficulty</h2>
+        <div id="difficultyOptions" class="choice-grid"></div>
+      </div>
+    </section>
+
+    <section id="gameOverScreen" class="menu-screen">
+      <div class="menu-card">
+        <div class="menu-kicker">Battle Report</div>
+        <h2 id="gameOverTitle">Game Over</h2>
+        <p id="gameOverText">The valley was overrun.</p>
+        <div class="menu-actions">
+          <button id="restartBtn" class="primary-btn">Play Again</button>
+          <button id="backToMenuBtn" class="secondary-btn">Main Menu</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
